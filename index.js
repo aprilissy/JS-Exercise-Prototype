@@ -102,12 +102,12 @@ Car.prototype.fill = function (gallons) {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-  Person.call(this, name, age, favToy)
-  this.favoriteToy = favToy;
+function Baby(name, age, faveToy) {
+  Person.call(this, name, age)
+  this.favoriteToy = faveToy;
 }
 
-Baby.prototype = Object.create(Parent.prototype);
+Baby.prototype = Object.create(Person.prototype)
 
 Baby.prototype.play = function () {
   return `Playing with ${this.favoriteToy}`;
@@ -117,10 +117,15 @@ Baby.prototype.play = function () {
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+
+  1. Calling 'this' in the global scope results in the window object. This is generally done as a mistake. The result is quite literally JavaScript... all of it. It's called Window or Global Object Binding.
+
+  2. When you call a function using a preceding dot, the object to the left of that dot is 'this.' So in zombies.brains('Yummy'), zombies gets 'this.' It's called Implicit Binding, you are implying that 'this' is whatever is to the left of the dot.
+
+  3. When a constructor function is used, whatever object that you created and returned gets 'this.' It's called New Binding, the new thing you created gets 'this.'
+
+  4. .call, .apply, and .bind methods straight up define what 'this' is. It's called Explicit Binding because you are clearly (explicitly) stating what gets 'this.'
+
 */
 
 
