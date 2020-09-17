@@ -92,8 +92,37 @@ function Car(model, milesPerGallon) {
 Car.prototype.fill = function (gallons) {
   return this.tank = this.tank + gallons;
 }
+
 //Stretch
 // wow! much empty...
+
+// //******************* Brit's Code *********************/
+// function Car(model, mpg) {
+//   this.model = model;
+//   this.milesPerGallon = mpg;
+//   this.tank = 0;
+//   this.odometer = 0;
+// }
+
+// Car.prototype.fill = function (gallons) {
+//   this.tank = this.tank + gallons;
+// };
+
+// //Stretch with Brit
+// Car.prototype.drive = function (dist) {
+//   const driveableMiles = this.tank * this.milesPerGallon;
+//   if (dist <= driveableMiles) {
+//     this.odometer = this.odometer + dist;
+//     this.tank = this.tank - (dist / this.milesPerGallon);
+//   } else {
+//     this.odometer = this.odometer + driveableMiles;
+//     this.tank = 0;
+//     return `I ran out of fuel at ${this.odometer} miles.`;
+//   }
+// }
+
+
+
 
 /*
   TASK 3
@@ -113,18 +142,41 @@ Baby.prototype.play = function () {
   return `Playing with ${this.favoriteToy}`;
 }
 
+// //******************* Brit's Code *********************/
+// function Baby(name, age, favoriteToy){
+//   Person.call(this, name, age);
+//   this.favoriteToy = favoriteToy;
+// }
+
+// Baby.prototype = Object.create(Person.prototype);
+// Baby.prototype.play = function(){
+//   return `Playing with ${this.favoriteToy}.`;
+// }
+
+
+
+
+
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
 
-  1. Calling 'this' in the global scope results in the window object. This is generally done as a mistake. The result is quite literally JavaScript... all of it. It's called Window or Global Object Binding.
+  1. Calling 'this' in the global scope results in the window object. This is generally done as a mistake. The result is quite literally JavaScript... all of it. It's called Window or Global Object Binding. If you don't give 'this' context it defaults to the window (or global object in node) (unless we are in strict mode - then it returns 'undefined')
 
-  2. When you call a function using a preceding dot, the object to the left of that dot is 'this.' So in zombies.brains('Yummy'), zombies gets 'this.' It's called Implicit Binding, you are implying that 'this' is whatever is to the left of the dot.
+  2. When you call a function using a preceding dot, the object to the left of that dot is 'this.' So in zombies.brains('Yummy'), zombies gets 'this.' It's called Implicit Binding, you are implying that 'this' is whatever is to the left of the dot. Only works in objects with methods. 'This' has no binding until the function is invoked. 
 
-  3. When a constructor function is used, whatever object that you created and returned gets 'this.' It's called New Binding, the new thing you created gets 'this.'
+  3. When a constructor function is used with the 'new' keyword, whatever object that you created and returned gets 'this.' It's called New Binding, the new thing you created gets 'this.'
+  --- Brit's Answer --- When a function is invoked as a constructor function using the new keyword, this points to the new object that's created.
 
   4. .call, .apply, and .bind methods straight up define what 'this' is. It's called Explicit Binding because you are clearly (explicitly) stating what gets 'this.'
+      .call   - pass in arguments one by one
+              - immediately invokes the funcion
+      .apply  - pass in arguments as an array
+              - immediately invokes the function 
+      .bind   - pass in arguments one by one
+              - does not immediately invoke the function
+              - instead it returns a brand new function that can be invoked later
 
 */
 
